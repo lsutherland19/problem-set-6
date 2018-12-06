@@ -41,7 +41,14 @@ function sayHello() {
  */
 
 function drawRectangle() {
-
+  let canvas2 = document.getElementById("canvas2");
+  let height = prompt("Please enter a valid height.");
+  let width = prompt("Please enter a valid width.");
+  let x = prompt("Please enter a valid x-coordinate.");
+  let y = prompt("Please enter a valid y-coordinate.");
+  
+  let ctx = canvas2.getContext("2d");
+  ctx.strokeRect(x, y, width, height);
 }
 
 /*
