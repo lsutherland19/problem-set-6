@@ -32,6 +32,9 @@ function sayHello() {
  * practically too large, should be prohibited. Check the example to see what
  * your code should do in these instances.
  *
+ bounds of the canvas: 1024 by 512
+ while let if break
+
  * Here is a list of prohibited values:
  *     - Width values less than 1
  *     - Height values less than 1
@@ -46,7 +49,31 @@ function drawRectangle() {
   let width = prompt("Please enter a valid width.");
   let x = prompt("Please enter a valid x-coordinate.");
   let y = prompt("Please enter a valid y-coordinate.");
-  
+
+  while (true) {
+    if (height >= 1) {
+      break;
+    }
+  }
+
+  while (true) {
+    if (width >= 1) {
+      break;
+    }
+  }
+
+  while (true) {
+    if (x >= 5) {
+      break;
+    }
+  }
+
+  while (true) {
+    if (y >= 5) {
+      break;
+    }
+  }
+
   let ctx = canvas2.getContext("2d");
   ctx.strokeRect(x, y, width, height);
 }
@@ -77,7 +104,9 @@ function drawRectangle() {
  */
 
 function drawColoredRectangle() {
-
+    let canvas3 = document.getElementById("canvas3");
+    let ctx = canvas3.getContext("2d");
+    ctx.strokeRect(10, 10, 50, 100);
 }
 
 /*
