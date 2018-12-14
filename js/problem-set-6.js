@@ -159,6 +159,8 @@ switch(color) {
  * valid right triangle, should be prohibited. Check the example to see what
  * your code should do in these instances.
  *
+REFERENCE: https://www.kirupa.com/html5/drawing_triangles_on_the_canvas.htm
+
  * Here is a list of prohibited values:
  *     - Combinations of side lengths that would make it impossible to draw
  *       a valid triangle
@@ -167,6 +169,8 @@ switch(color) {
  */
 
 function drawTriangle() {
+  let canvas4 = document.getElementById("canvas4");
+  let tri = canvas3.getContext("2d");
 
 }
 
