@@ -107,25 +107,34 @@ function drawColoredRectangle() {
     let canvas3 = document.getElementById("canvas3");
     let color = prompt("Please choose a color.");
     let ctx = canvas3.getContext("2d");
-    ctx.strokeRect(10, 10, 100, 50);
 
-    if (color = "black") {
-      ctx.fillStyle = "black";
-    } else if (color = "blue") {
-      ctx.fillStyle = "blue";
-    } else if (color = "green") {
-      ctx.fillStyle = "green";
-    } else if (color = "orange") {
-      ctx.fillStyle = "orange";
-    } else if (color = "purple") {
-      ctx.fillStyle = "purple";
-    } else if (color = "red") {
-      ctx.fillStyle = "red";
-    } else if (color = "yellow") {
-      ctx.fillStyle = "yellow";
-    } else {
-      alert(color + " is not a supported color. Please try again.")
-    }
+switch(color) {
+  case "black":
+    ctx.fillStyle = "black";
+    break;
+  case "blue":
+    ctx.fillStyle = "blue";
+    break;
+  case "green":
+    ctx.fillStyle = "green";
+    break;
+  case "orange":
+    ctx.fillStyle = "orange";
+    break;
+  case "purple":
+    ctx.fillStyle = "purple";
+    break;
+  case "red":
+    ctx.fillStyle = "red";
+    break;
+  case "yellow":
+    ctx.fillStyle = "yellow";
+    break;
+  default:
+    alert(color + " is not a supported color. Please try again.");
+    break;
+  }
+    ctx.fillRect(10, 10, 100, 50);
 }
 
 /*
