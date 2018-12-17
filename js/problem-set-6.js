@@ -254,8 +254,6 @@ function drawSmileyFace() {
   ctx.stroke();
   }
 
-
-
 /*
  * Star. 9 points.
  *
@@ -275,6 +273,49 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
+	const canv = document.getElementById("canvas6")
+	const ctxt = canv.getContext('2d');
+	ctxt.clearRect(0, 0, canv.width, canv.height);
+
+	let inrad;
+	let outrad;
+	let ctrx = 125;
+	let ctry = 125;
+	let numpoints = 10;
+	let youtpoint = [];
+	let xoutpoint = [];
+	let pointiny = [];
+	let pointinx = [];
+	let draw = false;
+
+	outrad = Number(prompt("Please enter the outer radius."));
+	inrad = Number(prompt("Please enter the inner radius."));
+	numpoints = Number(prompt("Please enter the number of points."));
+
+	if(outrad >= inrad && canv.width >= outrad + 125 &&
+		canv.height >= outrad + 125 && inrad>=1 && outrad>=1) {
+		draw = true;
+	}
+	else{alert("Your inputs were not valid.");}
+
+	for (let i = 0;i < numpoints;i++) {
+		xoutpoint.push(ctrx + outrad * (Math.cos(Math.PI * 2 * i / numpoints - Math.PI / 2)));
+		youtpoint.push(ctry + outrad * (Math.sin(Math.PI * 2 * i / numpoints - Math.PI / 2)));
+		pointinx.push(ctrx + inrad * (Math.cos(Math.PI * 2 * i / numpoints + Math.PI / numpoints - Math.PI / 2)));
+		youtpoint.push(ctry + inrad * (Math.sin(Math.PI * 2 * i / numpoints + Math.PI / numpoints - Math.PI / 2)));
+	}
+
+	if(draw) {
+		ctxt.beginPath();
+		ctxt.moveTo(xoutpoint[0], youtpoint[0]);
+		for(let j = 0;j < numpoints;j++) {
+			ctxt.lineTo(pointinx[j], youtpoint[j]);
+			ctxt.lineTo(xoutpoint[j + 1], youtpoint[j + 1]);
+		}
+			ctxt.lineTo(xoutpoint[0], youtpoint[0]);
+			ctxt.closePath();
+			ctxt.stroke();
+	}
 
 }
 
