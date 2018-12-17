@@ -169,8 +169,37 @@ REFERENCE: https://www.kirupa.com/html5/drawing_triangles_on_the_canvas.htm
  */
 
 function drawTriangle() {
-  let canvas4 = document.getElementById("canvas4");
-  let tri = canvas3.getContext("2d");
+    let x = 10;
+    let y = 10;
+    let a; let b;  let c;
+    let canvas = document.getElementById("canvas4");
+    let ctxt = canvas.getContext("2d");
+    ctxt.clearRect(0, 0, canvas.width, canvas.height);
+    while(true){
+  	a = Number(prompt("Enter the length of the first side."));
+  	b = Number(prompt("Enter the length of the second side."));
+  	c = Number(prompt("Enter the length of the third side."));
+  	if(((a**2) + (b**2) == (c**2)) && a > 0 && b > 0 && c > 0 && canvas.width - x - a >= 0 && canvas.height - y - b >= 0){
+  		break;
+  	}else{
+  		alert("The lengths you entered will not create a valid triangle. Please reenter the lengths.")
+  	}
+    }
+
+   ctxt.beginPath();
+   ctxt.moveTo(x,y);
+   ctxt.lineTo(x,y + a);
+   ctxt.stroke();
+
+   ctxt.beginPath();
+   ctxt.moveTo(x, y + a);
+   ctxt.lineTo(x + b, y + a);
+   ctxt.stroke();
+
+   ctxt.beginPath();
+   ctxt.moveTo(x,y);
+   ctxt.lineTo(x + b, y + a);
+   ctxt.stroke();
 
 }
 
@@ -194,8 +223,38 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
+  let radius;
+  let canvas = document.getElementById('canvas5');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+	while(true){
+		radius = Number(prompt("Please enter the radius of the head."));
+		if(radius >= 1 && radius <= canvas.width && Number.isInteger(radius)){
+			break;
+		}
+	}
+  let x = canvas.width;
+  let y = canvas.height;
+  let eyeRadius = radius * .1
+  let mouthRadius = radius * .7
+  ctx.beginPath();
+  ctx.arc(x / 2, y / 2, radius, 0, Math.PI * 2);
+  ctx.stroke();
 
-}
+  ctx.beginPath();
+  ctx.arc(x / 2 - radius / 3, y / 2 - radius / 4, eyeRadius,0, Math.PI * 2);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(x / 2 + radius / 3, y / 2 - radius / 4, eyeRadius,0, Math.PI * 2);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(x / 2, y / 2, mouthRadius,0, Math.PI);
+  ctx.stroke();
+  }
+
+
 
 /*
  * Star. 9 points.
