@@ -260,7 +260,7 @@ function drawSmileyFace() {
  * Write a function that draws a five-point star on the canvas. Prompt the
  * user for the outer radius (i.e., a circle that would connect each of the
  * star's outer points) and inner radius (i.e., a circle that would connect
- * each of the star's inner points). The center of the star should be placed
+ * each of the star's inner points). The centerStop of the star should be placed
  * at [125, 125].
  *
  * You'll need to use the appropriate Canvas API methods to do this. If you're
@@ -273,57 +273,57 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
-	const canv = document.getElementById("canvas6")
-	const ctxt = canv.getContext('2d');
+	let canv = document.getElementById("canvas6");
+	let ctxt = canv.getContext('2d');
 	ctxt.clearRect(0, 0, canv.width, canv.height);
 
-	let inrad;
-	let outrad;
+	let innerRadius;
+	let outerRadius;
+  let numPoints = 10;
 	let ctrx = 125;
 	let ctry = 125;
-	let numpoints = 10;
-	let youtpoint = [];
+	let youtpoiny = [];
 	let xoutpoint = [];
-	let pointiny = [];
-	let pointinx = [];
+	let yinpoint = [];
+	let xinpoint = [];
 	let draw = false;
 
-	outrad = Number(prompt("Please enter the outer radius."));
-	inrad = Number(prompt("Please enter the inner radius."));
-	numpoints = Number(prompt("Please enter the number of points."));
+	outerRadius = Number(prompt("Please enter the outer radius of the star."));
+	innerRadius = Number(prompt("Please enter the inner radius of the star."));
+	numPoints = Number(prompt("Please enter the number of points."));
 
-	if(outrad >= inrad && canv.width >= outrad + 125 &&
-		canv.height >= outrad + 125 && inrad>=1 && outrad>=1) {
+	if(outerRadius >=innerRadius && canv.width >= outerRadius + 125 &&
+		canv.height >= outerRadius + 125 && innerRadius>=1 && outerRadius>=1) {
 		draw = true;
 	}
-	else{alert("Your inputs were not valid.");}
+	else{alert("You entered an invalid input. Please try again.");}
 
-	for (let i = 0;i < numpoints;i++) {
-		xoutpoint.push(ctrx + outrad * (Math.cos(Math.PI * 2 * i / numpoints - Math.PI / 2)));
-		youtpoint.push(ctry + outrad * (Math.sin(Math.PI * 2 * i / numpoints - Math.PI / 2)));
-		pointinx.push(ctrx + inrad * (Math.cos(Math.PI * 2 * i / numpoints + Math.PI / numpoints - Math.PI / 2)));
-		youtpoint.push(ctry + inrad * (Math.sin(Math.PI * 2 * i / numpoints + Math.PI / numpoints - Math.PI / 2)));
+	for (let i=0;i<numPoints;i++) {
+		xoutpoint.push(ctrx + outerRadius * (Math.cos(Math.PI * 2 * i/numPoints - Math.PI / 2)));
+		youtpoiny.push(ctry + outerRadius * (Math.sin(Math.PI * 2 * i / numPoints - Math.PI / 2)));
+		xinpoint.push(ctrx + innerRadius * (Math.cos(Math.PI * 2 * i / numPoints + Math.PI / numPoints - Math.PI / 2)));
+		yinpoint.push(ctry + innerRadius * (Math.sin(Math.PI * 2 * i / numPoints + Math.PI / numPoints - Math.PI / 2)));
 	}
 
 	if(draw) {
 		ctxt.beginPath();
-		ctxt.moveTo(xoutpoint[0], youtpoint[0]);
-		for(let j = 0;j < numpoints;j++) {
-			ctxt.lineTo(pointinx[j], youtpoint[j]);
-			ctxt.lineTo(xoutpoint[j + 1], youtpoint[j + 1]);
+		ctxt.moveTo(xoutpoint[0], youtpoiny[0]);
+		for(let j=0;j<numPoints;j++) {
+			ctxt.lineTo(xinpoint[j], yinpoint[j]);
+			ctxt.lineTo(xoutpoint[j+1], youtpoiny[j+1]);
 		}
-			ctxt.lineTo(xoutpoint[0], youtpoint[0]);
+			ctxt.lineTo(xoutpoint[0], youtpoiny[0]);
 			ctxt.closePath();
 			ctxt.stroke();
 	}
-
 }
+
 
 /*
  * Stop Sign. 7 points.
  *
  * Write a function that draws a stop sign. The stop sign should be outlined
- * in black, but filled red. At the center of the stop sign, the same height
+ * in black, but filled red. At the centerStop of the stop sign, the same height
  * as the length of the sides, should be the word STOP (all capitals, white).
  * Each side length should be 80px.
  *
@@ -335,6 +335,37 @@ function drawStar() {
  */
 
 function drawStopSign() {
+    let canvas = document.getElementById('canvas7');
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let sideLength = 80;
+    let centerStop = [10+(sideLength)/2+sideLength/Math.sqrt(2), 10+(sideLength/2)+(sideLength/Math.sqrt(2))]
+    console.log(centerStop)
+    let points = 8;
+    let pointx = [];
+    let pointy = [];
+
+    for(let i = 0;i<points;i++){
+      pointx.push(Math.cos(((Math.PI * 2 * i) / points) - Math.PI / 8) * 100 + centerStop[0]);
+      pointy.push(Math.sin(((Math.PI*2*i)/points)-Math.PI/8) * 100+centerStop[1]);
+    }
+    ctx.beginPath();
+    ctx.moveTo([pointx][0], pointy[0]);
+    for(let j = 0;j<pointx.length;j++){
+      ctx.lineTo(pointx[j], pointy[j]);
+    }
+    ctx.lineTo(pointx[0], pointy[0]);
+    ctx.stroke();
+
+    ctx.fillStyle = "red";
+    ctx.fill();
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.textAlign = "center";
+    ctx.font = "60px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("STOP", centerStop[0], centerStop[1] + 15);
+    ctx.closePath()
 
 }
 
@@ -357,8 +388,33 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
+  const canv = document.getElementById("canvas8")
+  	const ctxt = canv.getContext('2d');
+  	ctxt.clearRect(0, 0, canv.width, canv.height);
 
-}
+  	let draw = false;
+  	let base = 5;
+
+  	let baseLength = Number(prompt("Please enter the base length of the pyramid."));
+  	if (baseLength * base + 10 <= canv.width && baseLength*base + 10 <= canv.height && baseLength >= 1) {
+  		draw = true;
+  		console.log("true");
+  	}
+  	else {alert("You entered an invalid input, try again!");}
+
+    if(draw) {
+      let k = 1;
+      let m = 0;
+      for(let i = base - 1; i >= 0; i--) {
+        for (let j = 0; j <= i; j++) {
+          ctxt.strokeRect((10 + baseLength * j + m), canv.height - (10 + baseLength * k), baseLength, baseLength);
+        }
+        k++;
+        m += .5 * baseLength;
+      }
+    }
+  }
+
 
 /*
  * House. 7 points.
@@ -390,5 +446,41 @@ function drawPyramid() {
  */
 
 function drawHouse() {
+    let canvas = document.getElementById('canvas9');
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    while(true){
+    doorColor = prompt(" Please enter a door color.");
+    houseColor = prompt("Please enter a house color.");
+    if((doorColor=="brown" || doorColor=="blue" || doorColor=="green" || doorColor=="orange" || doorColor=="purple" || doorColor=="red" || doorColor=="yellow")
+    && (houseColor=="brown" || houseColor=="blue" || houseColor=="green" || houseColor=="orange" || houseColor=="purple" || houseColor=="red" || houseColor=="yellow")) {
+      break;
+    }
+    else{
+        alert("One of the colors you entered wasn't valid, try again!")
+    }
+  }
+  let x = 150;
+  let houseLength = 500;
+  let houseHeight = 400;
+  let y = canvas.height-houseHeight-10;
+  ctx.beginPath();
+  ctx.fillStyle = houseColor;
+  ctx.fillRect(x,y,houseLength,houseHeight);
+  ctx.fillStyle = doorColor;
+  ctx.fillRect(x+(houseLength/2)-30,y+300,60,100);
+  ctx.fillStyle="gray";
+  ctx.moveTo(x,y);
+  ctx.lineTo(x+286,150);
+  ctx.lineTo(x+houseLength,y);
+  ctx.lineTo(x,y);
+  ctx.fill();
+  ctx.fillStyle="#ADD8E6";
+  ctx.fillRect(300,y+100, 50, 50);
+  ctx.fillRect(526,y+100, 50, 50);
+  ctx.fillRect(300,y+200, 50, 50);
+  ctx.fillRect(526,y+200, 50, 50);
+  ctx.closePath();
 
 }
